@@ -8,6 +8,8 @@ public class NauJugador : MonoBehaviour
     private float _vel;
 
     private Vector2 minPantalla, maxPantalla;
+
+    [SerializeField] private GameObject prefabProjectil;
     
     // Start is called before the first frame update
     void Start()
@@ -30,6 +32,21 @@ public class NauJugador : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        MovimentNau();
+        DisparaProjectil();
+    }
+
+    private void DisparaProjectil()
+    {
+        if (Input.GetKeyDown("space"))
+        {
+            GameObject projectil = Instantiate(prefabProjectil);
+            projectil.transform.position = transform.position;
+        }
+    }
+
+    private void MovimentNau()
     {
         float direccioIndicadaX = Input.GetAxisRaw("Horizontal");
         float direccioIndicadaY = Input.GetAxisRaw("Vertical");
